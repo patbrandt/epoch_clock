@@ -17,8 +17,9 @@ public:
 
     // NB: This must be manually initialized by a client to work correctly!
     // The epoch of a clock is the zero point. Here we define it as the delta
-    // between the intended epoch and the epoch of the system clock which is
-    // typically 00:00:00 UTC (midnight) on 1 January, 1970 for Unix systems.
+    // between the intended epoch and the epoch of the reference clock; this is
+    // typically 00:00:00 UTC (midnight) on 1 January, 1970 for Unix system
+    // clocks. Be sure to match the delta to the duration representation!
     static const duration epoch;
 
     // For a while GCC used 'is_monotonic', then changed it for some reason
@@ -42,8 +43,8 @@ public:
         // This will turn out badly if a time before the
         // system epoch is converted
         return std::time_t(
-            std::chrono::duration_cast<std::chrono::seconds>(
-                t.time_since_epoch()) - epoch);
+            (std::chrono::duration_cast<std::chrono::seconds>(
+                t.time_since_epoch()) - epoch).count());
     }
 
     // Convert from std::time_t to custom time

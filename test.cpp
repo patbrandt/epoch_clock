@@ -28,5 +28,9 @@ int main() {
     std::cout << "Current CORBA time = "
               << current_corba_time.time_since_epoch().count() << std::endl;
 
+    CorbaClock::time_point time{CorbaClock::duration(137000856413280000ULL)};
+    std::cout << "Converting " << time.time_since_epoch().count() << " to system time = "
+              << CorbaClock::to_time_t(time) << std::endl;
+
     return 0;
 }
