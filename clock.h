@@ -24,13 +24,7 @@ public:
 
     // For a while GCC used 'is_monotonic', then changed it for some reason
     // around in the 4.7 release. Clang still uses 'is_monotonic'.
-    static constexpr bool is_monotonic{
-#if defined(__clang__)
-        reference_clock::is_monotonic
-#else
-        reference_clock::is_steady
-#endif//__clang__
-        };
+    static constexpr bool is_steady = reference_clock::is_steady;
 
     static time_point now() {
         time_point t{std::chrono::duration_cast<duration>(
