@@ -2,8 +2,6 @@
 #define EPOCHCLOCK_H
 
 #include <chrono>
-#include <ctime>
-#include <ratio>
 
 template <typename DURATION, typename REF_CLOCK = std::chrono::system_clock>
 class EpochClock {
