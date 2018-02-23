@@ -22,8 +22,6 @@ public:
     // clocks. Be sure to match the delta to the duration representation!
     static const duration epoch;
 
-    // For a while GCC used 'is_monotonic', then changed it for some reason
-    // around in the 4.7 release. Clang still uses 'is_monotonic'.
     static constexpr bool is_steady = reference_clock::is_steady;
 
     static time_point now() {
