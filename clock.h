@@ -22,7 +22,7 @@ public:
 
     static constexpr bool is_steady = reference_clock::is_steady;
 
-    static time_point now() {
+    static time_point now() noexcept {
         time_point t{std::chrono::duration_cast<duration>(
             reference_clock::now().time_since_epoch())};
         return t + std::chrono::duration_cast<duration>(epoch);
